@@ -32,3 +32,25 @@
 - UIView.transition
 
 ![](images/8.png)
+
+### Chapter 6
+
+- CGAffineTransform(translationX:y:)
+- CAEmitterLayer (SnowView)
+
+![](images/9.png)
+
+### Chapter 7
+
+- UIView.animateKeyframes
+- UIView.addKeyframe
+
+![](images/10.png)
+
+### Chapter 9
+
+![](images/11.png)
+
+### Chapter 10
+
+- Core Animation
