@@ -81,8 +81,8 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         
         heading.center.x  -= view.bounds.width
-        username.center.x -= view.bounds.width
-        password.center.x -= view.bounds.width
+//        username.center.x -= view.bounds.width
+//        password.center.x -= view.bounds.width
         
         cloud1.alpha = 0.0
         cloud2.alpha = 0.0
@@ -91,6 +91,9 @@ class ViewController: UIViewController {
         
         loginButton.center.y += 30.0
         loginButton.alpha = 0.0
+        
+        /* --- END EXAMPLE --- */
+//        heading.center.x -= view.bounds.width
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,21 +103,21 @@ class ViewController: UIViewController {
             self.heading.center.x += self.view.bounds.width
         }
         
-        UIView.animate(withDuration: 0.5, delay: 0.3, usingSpringWithDamping: 0.6,
-                       initialSpringVelocity: 0.0,
-                       animations: {
-                        self.username.center.x += self.view.bounds.width
-                       },
-                       completion: nil
-        )
+//        UIView.animate(withDuration: 0.5, delay: 0.3, usingSpringWithDamping: 0.6,
+//                       initialSpringVelocity: 0.0,
+//                       animations: {
+//                        self.username.center.x += self.view.bounds.width
+//                       },
+//                       completion: nil
+//        )
         
-        UIView.animate(withDuration: 0.5, delay: 0.4, usingSpringWithDamping: 0.6,
-                       initialSpringVelocity: 0.0,
-                       animations: {
-                        self.password.center.x += self.view.bounds.width
-                       },
-                       completion: nil
-        )
+//        UIView.animate(withDuration: 0.5, delay: 0.4, usingSpringWithDamping: 0.6,
+//                       initialSpringVelocity: 0.0,
+//                       animations: {
+//                        self.password.center.x += self.view.bounds.width
+//                       },
+//                       completion: nil
+//        )
         
         UIView.animate(withDuration: 0.5, delay: 0.5,
                        animations: {
@@ -157,6 +160,38 @@ class ViewController: UIViewController {
         animateCloud(cloud2)
         animateCloud(cloud3)
         animateCloud(cloud4)
+        
+        /* --- END EXAMPLE --- */
+        
+//        UIView.animate(withDuration: 0.5) {
+//            self.heading.center.x += self.view.bounds.width
+//        }
+        
+        let flyRight = CABasicAnimation(keyPath: "position.x")
+        flyRight.fromValue = -view.bounds.size.width / 2
+        flyRight.toValue = view.bounds.size.width / 2
+        flyRight.duration = 0.5
+        
+        /*
+         .removed(기본) : beginTime이 정의되어 있으면 beginTime 부터 시작하고, 없으면 발동 시점부터 시작된다. isRemovedOnCompletion에 상관 없이 끝나면 removed 된다.
+         .backwards : beginTime에 상관 없이 첫번째 프레임을 보여준다.
+         .forwards : 애니메이션이 끝나도 마지막 프레임을 유지한다. (isRemovedOnCompletion = false 일 때만)
+         .both : .backwards랑 .forwards를 합친 것이다.
+         */
+        flyRight.fillMode = .both
+        flyRight.isRemovedOnCompletion = false
+        
+        heading.layer.add(flyRight, forKey: nil)
+        
+        flyRight.beginTime = CACurrentMediaTime() + 0.3
+        username.layer.add(flyRight, forKey: nil)
+        
+        flyRight.beginTime = CACurrentMediaTime() + 0.4
+        password.layer.add(flyRight, forKey: nil)
+        
+        /* 최종 위치 */
+        username.center.x = view.bounds.width / 2
+        password.center.x = view.bounds.width / 2
     }
     
     func showMessage(index: Int) {
