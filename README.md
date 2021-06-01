@@ -27,3 +27,10 @@
 
 ![](images/7.png)
 
+### Chapter 6
+
+- CGAffineTransform(translationX:y:)
+- CAEmitterLayer (SnowView)
+
+![](images/9.png)
+
